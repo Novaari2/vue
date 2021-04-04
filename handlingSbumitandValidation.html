@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handling Submit & Form Validation</title>
+    <style>
+        form {
+            border: 1px solid #ddd;
+            padding:5px;
+            width:225px;
+            background: #efefef;
+        }
+        label {
+            display: block;
+            margin-top: 5px;
+        }
+        input, textarea, select, option{
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- @submit yaitu v-on:submit -->
+        <form @submit="submitForm($event)" action="http://example.com/add-product" method="post">
+            <label>Title:</label>
+            <input type="text" v-model="title">
+
+            <label>Description</label>
+            <textarea v-model="description"></textarea>
+
+            <label>Authors:</label>
+            <input type="text" v-model="authors">
+
+            <label>Price:</label>
+            <input type="text" v-model="price">
+
+            <label>Categories:</label>
+            <select v-model="categories" multiple>
+                <option v-for="option in options" value="option.value">
+                    {{ option.text }}
+                </option>
+            </select>
+
+            <label></label>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                title: '',
+                description: '',
+                authors: '',
+                price: 0,
+                categories: [],
+                options: [
+                    {text: 'Graphic Programming', value: '01'},
+                    {text: 'Mobile Application Development', value: '02'},
+                    {text: 'Virtual and Augmented Reality', value: '03'}
+                ]
+            },
+            methods: {
+                submitForm(event){
+                    let error = 0;
+                    this.error = []
+
+                    if (this.title.length < 3){
+                        error++
+                        // menambahkan set focus
+                        this.$refs.title.focus()
+                        alert('Title Minimal 3 karakter!')
+                    }
+                    else if (this.description.length > 5000){
+                        error++
+                        this.error.push('Descrption Maximal 5000 karakter');
+                        
+                    }
+                    else if (this.authors.length < 3){
+                        error++
+                        alert('authors minimal 3 karakter')
+                    }
+                    else if(this.price < 0){
+                    error++
+                    alert('Price tidak boleh minus!')
+                    }
+                    else if(this.categories.length === 0){
+                    error++
+                    alert('Pilih minimal 1 category!')
+                    }
+                    if( error === 0 ){
+                    alert('Terima kasih telah mengisi data dengan benar!')
+                    // kirim data ke server
+                    }
+                    //console.log(event);
+                    //kode validasi
+                    //kode kirim ke server
+                    // kode status informasi
+                    //alert('terima kasih');
+                    // block redirect ke action
+                    event.preventDefault()
+                }
+            }
+        });
+    </script>
+</body>
+</html>

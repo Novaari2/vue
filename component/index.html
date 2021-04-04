@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memulai Component</title>
+</head>
+<body>
+    <div id="app1">
+       <h1>Objek Vue 1</h1>
+       <component-a></component-a>
+       <component-b></component-b>
+    </div>
+    <div id="app2">
+        <h1>Objek Vue 2</h1>
+        <component-a></component-a>
+        <component-c></component-c>
+    </div>
+    <div id="app">
+        <component-a></component-a>
+        <component-b></component-b>
+        <component-c></component-c>
+    </div>
+    
+   <script src="../lib/vue.js"></script>
+   <script>
+    //    Global Component
+    Vue.component('component-a', {
+        template: `<p>Component A</p>`
+    });
+    Vue.component('component-b', {
+        template: `<p>Component B</p>`
+    });
+    Vue.component('component-c', {
+        template: `<p>Component C</p>`
+    });
+
+    new Vue({el: '#app1'});
+    new Vue({el: '#app2'});
+
+    // Local Component
+    var componentA = {
+        template: `<p>Component A</p>`
+    }
+    var componentB = {
+        template: `<p>Component B</p>`
+    }
+    var componentC = {
+        template: `<p>Component C</p>`
+    }
+    // me register component lokal
+    new Vue({
+        el: '#app',
+        components: {
+            'component-a': componentA,
+            'component-b': componentB,
+            'component-c': componentC
+        }
+    });
+   </script>
+</body>
+</html>

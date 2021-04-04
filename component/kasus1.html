@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Book</title>
+    <style>
+        .card{
+            background: #efefef;
+            border: 1px solid #ddd;
+            margin-right: 5px;
+            width: 200px;
+            float: left;
+        }
+        h3{
+            min-height: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <book
+            title="C++ Hight Performance"
+            description="Write code that scales across CPU registers, multicore, and machine clusters"
+            image="garuda.jpg"
+        >
+        </book>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        var BookComponent = {
+            data() {
+                return {
+                    classCard: 'card'
+                }
+            },
+            props: ['title','description','image'],
+            template: `
+                        <div :class="classCard">
+                        <img :src="'../images/'+image" style="width:100%">
+                        <p v-html="description"></p>
+                        </div>
+                    `
+        }
+        // mendaftarkan component
+        new Vue({
+            el: '#app',
+            components: {
+                'book': BookComponent,
+            }
+        });
+    </script>
+</body>
+</html>

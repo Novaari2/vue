@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Button</title>
+</head>
+<body>
+    <div id="app">
+        Paket<br>
+        <input type="radio" name="bukuA" value="A" v-model="paket">
+        <label for="bukuA">Buku Laravel</label>
+        <br>
+        <input type="radio" name="bukuB" value="B" v-model="paket">
+        <label for="bukuB">Buku Vue</label>
+        <br>
+        <input type="radio" name="bukuAB" value="AB" v-model="paket">
+        <label for="bukuAB">Buku Laravek + Vue</label>
+        <br>
+        <span>Pilihan paket: {{ paket }}</span>
+        <br><br>
+        <select name="category" v-model="category">
+            <option disabled value="">Pilih Salah Satu</option>
+            <option>Graphic Programming</option>
+            <option>Mobile Application And Development</option>
+            <option>Virtual and Augment Reality</option>
+        </select>
+        <span>Selected: {{ category }}</span>
+        <br><br>
+        <!-- input bertipe boolean -->
+        Gender:
+        <input type="checkbox" name="checkbox" v-model="gender">
+        <label for="checkbox">{{ gender }}</label>
+        <br><br>
+        <!-- select tunggal dengan dua option bertipe boolean -->
+        <select name="gender" v-model="gender">
+            <option value="false">Wanita</option>
+            <option value="true">Pria</option>
+        </select>
+        <span>Selected: {{ gender }}</span>
+    </div>
+    
+
+    <script src="lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                paket: '',
+                category: '',
+                gender: true
+            }
+        });
+    </script>
+</body>
+</html>
