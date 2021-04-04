@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasus 1</title>
+</head>
+<body>
+    <div id="app">
+        <!-- filters -->
+        <h1>Filters: {{ message | upper }}</h1>
+        <h1>methods: {{ upper(message) }}</h1>
+        <h1>Computed: {{ messageUpperCase }}</h1>
+        <h1>{{ price | formatCurency('USD') }}</h1>
+        <h1>{{ price | formatCurency('IDR') }}</h1>
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello World',
+                price: 5000
+            },
+            // filters: {
+            //     upper (text){
+            //         return text.toUpperCase()
+            //     }
+            // },
+            methods: {
+                upper(text){
+                    return text.toUpperCase()
+                }
+            },
+            computed: {
+                messageUpperCase(){
+                    return this.message.toUpperCase()
+                }
+            },
+            filters: {
+                formatCurency (value, currency){
+                    var formatter = new Intl.NumberFormat('id-ID',{
+                        style: 'currency',
+                        currency: currency,
+                        minimumFractionDigits: 2,
+                    });
+                    return formatter.format(value)
+                }
+            }
+        });
+    </script>
+</body>
+</html>

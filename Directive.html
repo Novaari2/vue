@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directive</title>
+</head>
+<body>
+    <div id="app">
+        <div v-if="nilai === 'A'">
+            <h3>Sempurna</h3>
+        </div>
+        <div v-else-if="nilai === 'B'">
+            <h3>Bagus</h3>
+        </div>
+        <div v-else-if="nilai === 'C'">
+            <h3>Cukup</h3>
+        </div>
+        <div v-else>
+            <h3>Jelek</h3>
+        </div>
+        <button v-on:click="counter += 1">
+            counter
+        </button>
+        <!-- v-on bisa diganti dengan @ -->
+        <button @click.left="info('Selamat anda melakukan aksi click')">
+            Informasi
+        </button>
+        <a href="https://vuejs.org" v-on:click="link($event)">vuejs.org</a>
+        <!-- membatasi button di kliik satu kali -->
+        <button v-on:click.once="info('selamat datang')">
+            info
+        </button>
+        <!-- v-bind -->
+        <!-- v-bind dapat diganti dengan : -->
+        <p>Button diatas di klik sebanyak {{ counter }} kali.</p>
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                nilai: "B",
+                counter: 0
+            },
+            methods: {
+                info(text){
+                    alert(text)
+                },
+                link(){
+                    alert('go to link')
+                    event.preventDefault()
+                }
+            }
+        })
+    </script>
+</body>
+</html>

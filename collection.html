@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection</title>
+</head>
+<body>
+    <div id="app">
+        <table border="1">
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Authors</th>
+                <th>Price</th>
+            </tr>
+            <!-- menampilkan seluruh buku -->
+            <!-- <tr v-for="book of books"> -->
+            <!-- menampilan buku yg harganya hanya sama atau lebih dari 100000 -->
+            <tr v-for="(book, index) of books" :key="index" v-if="book.price >= 100000">
+                <td>
+                    <!-- menggunakan v-bind -->
+                    <img :src="'images/' + book.image" widht="30" height="30" alt="image book">
+                </td>
+                <td>{{ book.title}}</td>
+                <td>{{ book.description }}</td>
+                <td>{{ book.authors }}</td>
+                <td>{{ book.price }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                books: [{
+                    id: 99,
+                    title: 'C++ High Performance',
+                    description: 'Write code that scales across CPU registers, multicore and machine clusters',
+                    authors: 'Viktor Sehr, Björn Andrist',
+                    publish_year: 2018,
+                    price: 100000,
+                    image: 'app.png'
+                },
+                {
+                    id: 102,
+                    title: 'Python Programming Blueprints',
+                    description: 'How to build useful, real-world applications in the Python programming language',
+                    authors: 'Daniel Furtado, Marcus Pennington',
+                    publish_year: 2017,
+                    price: 75000,
+                    image: 'bumi.jpg'
+                },
+                {
+                    id: 102,
+                    title: 'Python Programming Blueprints',
+                    description: 'How to build useful, real-world applications in the Python programming language',
+                    authors: 'Daniel Furtado, Marcus Pennington',
+                    publish_year: 2017,
+                    price: 150000,
+                    image: 'garuda.jpg'
+                },
+                {
+                    id: 102,
+                    title: 'Python Programming Blueprints',
+                    description: 'How to build useful, real-world applications in the Python programming language',
+                    authors: 'Daniel Furtado, Marcus Pennington',
+                    publish_year: 2017,
+                    price: 80000,
+                    image: 'luffy.jpg'
+                },
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

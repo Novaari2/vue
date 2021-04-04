@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menggunakan v-model</title>
+</head>
+<body>
+    <!-- menggunakan v-model untuk molakukan two way data binding -->
+    <div id="app">
+        <form>
+            <input type="text" name="title" v-model="title" placeholder="Masukkan judul">
+            {{ title }}
+            <br><br>
+            <textarea name="description" v-model="description" placeholder="Masukkan deskripsi" id="" cols="30" rows="10"></textarea>
+            {{ description }}
+            <!-- modifier number memastikan input dari user bertipe number -->
+            <input type="number" name="price" v-model.number="price"> 
+            <br><br>
+            <!-- modifier trim digunakan untuk menghapus spasi putih di awal atau di akhir string -->
+            <input type="text" name="isi" v-model.trim="isi" placeholder="Masukkan Isi">
+            {{ isi }}
+        </form>
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                title: "",
+                description: "",
+                price: 0,
+                isi: ""
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+</head>
+<body>
+    <div id="app">
+        <!-- menampilkan data array -->
+        <ul>
+            <li v-for="book in books">
+                {{ book }}
+            </li>
+        </ul>
+        <!-- v-for menggunakan index -->
+        <ul>
+            <li v-for="(book, i) in books">
+                <!-- index ke-{{ i }}: {{ book }} -->
+                <!-- atau memulai index dari no 1 -->
+                index ke-{{ i+1 }}: {{ book }}
+            </li>
+        </ul>
+        <!-- Menampilkan data objek -->
+        <ul>
+            <!-- hanya menampilkan value -->
+            <!-- <li v-for="()value of foods">
+                {{ value }}
+            </li> -->
+            <!-- menampilkan key dan value -->
+            <!-- <li v-for="(value, key) of foods">
+                {{ key }}: {{ value }}
+            </li> -->
+            <!-- menambahkan key,value, dan index -->
+            <li v-for="(value,key,index) of foods">
+                index ke-{{ index+1 }}.{{ key }}: {{ value }}
+            </li>
+        </ul>
+    </div>
+    
+    <script src="lib/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    'C++ High Performance',
+                    'Mastering Linux Security and Hardening',
+                    'Python Programming Blueprints',
+                    'Mastering Postgree SQL 10'
+                ],
+                foods: {
+                    jenis_makanan: 'Japanese',
+                    bahan: 'ikan salmon',
+                    rasa: 'pedas',
+                    nama: 'sushi'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue First</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ name }}</h1>
+        <h3>{{ age }}</h3>
+        <p>{{ gender }}</p>
+        <p>{{ 'hobby: ' +hobby }}</p>
+        <p>{{ children }}</p>
+    </div>
+    <script src="lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: 'Nova', //string
+                age: 23,    //int
+                gender: true,   //boolean (pria)
+                hobby: ['coding','music','coffee'], //array
+                children: { //object
+                    1: 'comming soon',
+                    2: 'soon',
+                    3: 'coming'
+                }
+            }
+        });
+    </script>
+</body>
+</html>
